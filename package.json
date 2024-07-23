@@ -1,0 +1,15 @@
+{
+  "name": "workout-application",
+  "version": "1.0.0",
+  "description": "A full-stack workout weight training tracking application that allows users to log their workouts, track progress over time, and manage their exercise routines",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.12.0"
+  }
+}
