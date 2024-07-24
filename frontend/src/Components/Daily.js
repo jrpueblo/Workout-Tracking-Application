@@ -55,62 +55,87 @@ function Daily() {
     getWorkouts(); // Fetch workouts when the component mounts
   }, []);
 
-  return (  
-    <div className="daily-page">
-      <h2 className="title"> Today's Workout </h2>
-      <div className="workout-wrapper">
-        <form onSubmit={handleSubmit}>
-            <div className="workout-input">
-            <div className="input-item">
-                <label>Workout Name</label>
-                <input type="text" value={exercise} onChange={(e) => setExercise(e.target.value)} placeholder="What was the name of the exercise?" />
+  return (
+    <div className="main-page">
+        <h1 className="main-title">Track your workout</h1>
+        <div className="daily-page">
+            <div className="workout-wrapper">
+                <h1 className='box-title'>Input Exercise</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="workout-input">
+                        <div className="input-item">
+                            <label>Workout Name</label>
+                            <input
+                                type="text"
+                                value={exercise}
+                                onChange={(e) => setExercise(e.target.value)}
+                                placeholder="What was the name of the exercise?"
+                            />
+                        </div>
+                        <div className="input-item">
+                            <label>Weight</label>
+                            <input
+                                type="text"
+                                value={weight}
+                                onChange={(e) => setWeight(e.target.value)}
+                                placeholder="What was the weight for the exercise? (lbs)"
+                            />
+                        </div>
+                        <div className="sets-and-reps">
+                            <div className="input-item">
+                                <label>Sets</label>
+                                <select
+                                    name="sets"
+                                    id="sets"
+                                    value={sets}
+                                    onChange={(e) => setSets(e.target.value)}
+                                >
+                                    {set_options.map((value) => (
+                                        <option key={value} value={value}>
+                                            {value}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="input-item">
+                                <label>Reps</label>
+                                <select
+                                    name="reps"
+                                    id="reps"
+                                    value={reps}
+                                    onChange={(e) => setReps(e.target.value)}
+                                >
+                                    {rep_options.map((value) => (
+                                        <option key={value} value={value}>
+                                            {value}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Submit Workout</button>
+                </form>
             </div>
-            <div className="input-item">
-                <label>Weight</label>
-                <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)}placeholder="What was the weight for the exercise?" />
+
+            <div className="daily-workout-display">
+              <h1 className="box-title">Today's Workout</h1>
+                <ul>
+                    {workouts.length > 0 ? (
+                        workouts.map((workout, index) => (
+                            <li key={index}>
+                                {workout.exercise} - {workout.weight} - {workout.sets} sets of {workout.reps}
+                            </li>
+                        ))
+                    ) : (
+                        <li>No workouts available</li>
+                    )}
+                </ul>
+                <button type="submit">Submit to Archive</button>
             </div>
-            <div className="sets-and-reps">
-              <div className="input-item">
-                  <label>Sets</label>
-                  <select name="sets" id="sets" value={sets} onChange={(e) => setSets(e.target.value)}>
-                  {set_options.map((value) => (
-                      <option key={value} value={value}>
-                      {value}
-                      </option>
-                  ))}
-                  </select>
-              </div>
-              <div className="input-item">
-                  <label>Reps</label>
-                  <select name="reps" id="reps" value={reps} onChange={(e) => setReps(e.target.value)}>
-                  {rep_options.map((value) => (
-                      <option key={value} value={value}>
-                      {value}
-                      </option>
-                  ))}
-                  </select>
-                  </div>
-              </div>
-            </div>
-            <button type="submit">Submit Workout</button>
-        </form>
-      </div>
-      <div className="daily-workout-display">
-        <ul>
-          {workouts.length > 0 ? (
-            workouts.map((workout, index) => (
-              <li key={index}>
-                {workout.exercise} - {workout.weight} - {workout.sets} sets of {workout.reps}
-              </li>
-            ))
-          ) : (
-            <li>No workouts available</li>
-          )}
-        </ul>
-        <button type="submit">Submit to Archive</button>
-      </div>
+        </div>
     </div>
-  );
+);
 }
 
 export default Daily

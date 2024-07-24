@@ -10,8 +10,10 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
+// Adding workouts
 app.post('/api/workouts', async (req, res) => {
   const { exercise, weight, sets, reps } = req.body;
+  weight = weight + " lbs";
 
   try {
     const result = await client.query(
@@ -25,6 +27,7 @@ app.post('/api/workouts', async (req, res) => {
   }
 });
 
+// Fetching workouts
 app.get('/api/workouts', async (req, res) => {
   try{
     const result = await client.query('SELECT * FROM workouts');
@@ -33,6 +36,35 @@ app.get('/api/workouts', async (req, res) => {
   } catch(error){
     console.error('Error fetching workout data: ', error);
     res.status(500).json({ message: "Failed to fetch workout dat "});
+  }
+});
+
+// Submitting workouts to archive
+app.post('/api/archive', async (req, res) => {
+  try{
+
+    // Begin Transaction
+    await client.query('BEGIN');
+
+    // Get workouts
+    const dailyWorkout = await client.query('SELECT * FROM workouts');
+    const dailyWorkoutList = dailyWorkout.rows;
+
+    if(dailyWorkoutList.length > 0){
+      const today = new Date().toISOString().split('T')[0];
+
+      // Transfer workouts into archive table
+      await client.query('INSERT INTO arhive (date, ')
+    }
+
+
+    const client = await pool.connect();
+    res.status(200).json(result.rows);
+  } catch(error){
+    // Abort the all the queries if error 
+    await client.query('ROLLBACK');
+    console.error('Error archiving workouts: ', error);
+    res.status(500).json({ message: 'Failed to archive workouts' });
   }
 });
 

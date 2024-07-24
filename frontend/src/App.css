@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
+
+
 .App {
   text-align: center;
 }
@@ -45,7 +49,7 @@
 }
 
 :root {
-	--mainColor: #29335c;
+	--mainColor: #333333;
 	--mainColorLight: #5767aa;
 	--secondaryColor: #db2b39;
 	--textColor: #eee;
@@ -125,8 +129,30 @@ nav {
 	}
 }
 
+body {
+	background-image: url('Dumbells\ and\ Plates.avif');
+	background-size: cover;
+	background-position: center;
+}
+
 .title {
 	padding:30px;
+	font-family: 'Poppins', 'sans-serif';
+	font-size: 50px;
+	color: white;
+}
+
+.main-title{
+	padding: 30px;
+	font-family: 'Poppins', 'sans-serif';
+	font-size: 75px;
+	color: white;
+}
+
+.box-title{
+	font-family:Arial, Helvetica, sans-serif;
+	color: black;
+	padding-bottom: 10px;
 }
 
 /* CSS for Daily Workout Tracking*/
@@ -135,14 +161,19 @@ nav {
 	padding: 50px;
 	display: flex;
 	justify-content: center;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
+}
+
+.workout-input {
+	padding: 30px;
 }
 
 .workout-wrapper {
 	background-color: white;
-	width: 400px;
-	border: 15px solid #29335c;
+	width: 500px;
+	border: 15px solid #333333;
+	border-radius: 8px;
 	padding: 50px;
 	margin: 20px;
 }
@@ -174,7 +205,7 @@ nav {
 
   button[type="submit"] {
 	padding: 10px 20px;
-	background-color: #4c56af;
+	background-color: #333333;
 	color: white; 
 	border: none;
 	border-radius: 5px;
@@ -203,7 +234,7 @@ nav {
 .daily-workout-display {
 	background-color: white;
 	width: 600px;
-	border: 15px solid #29335c;
+	border: 15px solid #333333;
 	padding: 50px;
 	margin: 20px;
 }

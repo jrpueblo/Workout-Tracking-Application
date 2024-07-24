@@ -14,8 +14,6 @@ CREATE TABLE workouts
 CREATE TABLE archive
 (
     id SERIAL PRIMARY KEY,
-    exercise varchar(255),
-    weight varchar(255),
-    sets varchar(255),
-    reps varchar(255)
+    date DATE,
+    workouts JSONB
 );
