@@ -26,7 +26,7 @@ function Daily() {
     };
 
     try {
-        const response = await axios.post('http://localhost:3001/api/workouts', exerciseData);
+        const response = await axios.post('http://localhost:3001/api/archive', exerciseData);
         if (response.status === 200) {
           console.log('User data submitted successfully');
           setExercise('');

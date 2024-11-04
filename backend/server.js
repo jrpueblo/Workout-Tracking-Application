@@ -68,6 +68,43 @@ app.post('/api/archive', async (req, res) => {
   }
 });
 
+// Fetching dates for archive drop down
+app.get('/api/archive/dates', async (req, res) => {
+  try{
+    const result = await client.query('SELECT date FROM archive');
+    res.status(200).json(result.rows);
+
+  } catch(error){
+    console.error('Error fetching archived workout data: ', error);
+    res.status(500).json({ message: "Failed to fetch archived workout data "});
+  }
+});
+
+// Fetching archived workouts
+app.get('/api/archive', async (req, res) => {
+  try{
+    const result = await client.query('SELECT * FROM archive');
+    res.status(200).json(result.rows);
+
+  } catch(error){
+    console.error('Error fetching archived workout data: ', error);
+    res.status(500).json({ message: "Failed to fetch archived workout data "});
+  }
+});
+
+/// Fetch workouts by specific date
+app.get('/api/archive/date/:date', async (req, res) => {
+  const { date } = req.params;
+  try {
+    // Use the ::date cast to compare only the date part
+    const result = await client.query('SELECT * FROM archive WHERE date::date = $1::date', [date]);
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching workouts for date: ', error);
+    res.status(500).json({ message: "Failed to fetch workouts for the specified date." });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
