@@ -1,0 +1,16 @@
+Working Tracking Application
+
+Frontend
+-React
+
+Backend
+-ExpressJS
+-PostgreSQL
+
+To start Frontend
+cd into frontend directory
+npm start
+
+to start Backend
+cd into backend directory
+node server.js
